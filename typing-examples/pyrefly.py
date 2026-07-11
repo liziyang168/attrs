@@ -147,6 +147,19 @@ ConvCToBool(False)
 ConvCToBool("n")
 
 
+@attrs.define
+class DecoratorConverter:
+    x: int = attrs.field()
+
+    @x.converter
+    def _to_int(self, val: str | float) -> int:
+        return int(val)
+
+
+# XXX: fails
+# DecoratorConverter("foo")
+
+
 # Validators
 @attrs.define
 class Validated:
